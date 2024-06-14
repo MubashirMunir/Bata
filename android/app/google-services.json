@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "320253030436",
+    "project_id": "practice-575a3",
+    "storage_bucket": "practice-575a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:320253030436:android:518fb5e760f3c6a791a8b1",
+        "android_client_info": {
+          "package_name": "com.example.cheeta"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOMv_IZHsT694Ed-zVUfrR7_g3acWWzco"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:320253030436:android:375b364d6b14198791a8b1",
+        "android_client_info": {
+          "package_name": "com.practice.practice"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOMv_IZHsT694Ed-zVUfrR7_g3acWWzco"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
