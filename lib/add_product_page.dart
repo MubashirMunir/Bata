@@ -29,7 +29,7 @@ class AddProductPage extends StatelessWidget {
                 height: 10,
               ),
                TextField(
-                controller: ctrl.tc,
+                controller: ctrl.name,
                 decoration: const InputDecoration(
                     label: Text("product name"),
                     border: OutlineInputBorder(),
@@ -38,9 +38,10 @@ class AddProductPage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const TextField(
+               TextField(
+                controller: ctrl.desc,
                 maxLines: 4,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     label: Text("product Description"),
                     border: OutlineInputBorder(),
                     hintText: "Enter Product Name"),
@@ -48,58 +49,60 @@ class AddProductPage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const TextField(
-                decoration: InputDecoration(
-                    label: Text("product Image"),
+               TextField(
+                controller: ctrl.imageUrl,
+                decoration: const InputDecoration(
+                    label:  Text("product Image"),
                     border: OutlineInputBorder(),
                     hintText: "Image Url"),
               ),
               const SizedBox(
                 height: 10,
               ),
-              const TextField(
-                decoration: InputDecoration(
+               TextField(
+                controller: ctrl.price,
+                decoration: const InputDecoration(
                     label: Text("product Price"),
                     border: OutlineInputBorder(),
                     hintText: "Price"),
               ),
-              Row(
-                children: [
-                  Flexible(
-                      child: DropDown(
-                          value: 'cat1',
-                          text: "cat1",
-                          list: const [
-                            'cat1',
-                            'cat2',
-                            'cat3',
-                          ],
-                          onSelected: (selectedVal) {})),
-                  Flexible(
-                      child: DropDown(
-                    text: 'brand',
-                    list: const ['brand1', 'brand2', 'brand3'],
-                    onSelected: (selectedVal) {},
-                    value: 'brand1',
-                  ))
-                ],
-              ),
-              const Text(
-                "Offer Product ?",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-              ),
-              DropDown(
-                  value: 'No',
-                  text: 'No',
-                  list: const ['No', 'Yes'],
-                  onSelected: (selectedVal) {print(selectedVal);}),
-              SizedBox(height: 30,),
+              // Row(
+              //   children: [
+              //     Flexible(
+              //         child: DropDown(
+              //             value: 'cat1',
+              //             text: "cat1",
+              //             list: const [
+              //               'cat1',
+              //               'cat2',
+              //               'cat3',
+              //             ],
+              //             onSelected: (selectedVal) {})),
+              //     Flexible(
+              //         child: DropDown(
+              //       text: 'brand',
+              //       list: const ['brand1', 'brand2', 'brand3'],
+              //       onSelected: (selectedVal) {},
+              //       value: 'brand1',
+              //     ))
+              //   ],
+              // ),
+              // const Text(
+              //   "Offer Product ?",
+              //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+              // ),
+              // DropDown(
+              //     value: 'No',
+              //     text: 'No',
+              //     list: const ['No', 'Yes'],
+              //     onSelected: (selectedVal) {print(selectedVal);}),
+              const SizedBox(height: 30,),
               SizedBox(
                     width: 200,
                   height: 50,
                   child: ElevatedButton(
                      
-                      onPressed: (){ctrl.addProduct();}, child: Text('Submit')))
+                      onPressed: (){ctrl.addProduct();}, child: const Text('Submit')))
             ],
           ),
         ),

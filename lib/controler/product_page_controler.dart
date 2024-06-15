@@ -7,30 +7,33 @@ import 'package:get/get.dart';
 import 'package:practice/module/product/product_module.dart';
 
 class ProductPageControler extends GetxController{
-  final firebase =FirebaseFirestore.instance.collection("products");
 
+ TextEditingController name =TextEditingController();
+ TextEditingController price =TextEditingController();
+ TextEditingController desc =TextEditingController();
+ TextEditingController imageUrl =TextEditingController();
  TextEditingController tc =TextEditingController();
 
- final firestore =FirebaseFirestore.instance;
 
-  late CollectionReference productCollection;
+
+ final _firestore =FirebaseFirestore.instance.collection('products');
 
 
   String id=DateTime.now().millisecond.toString();
   @override
   void onInit() {
-    CollectionReference cf=firestore.collection('products');
+     // CollectionReference cf=_firestore.collection('products');
     super.onInit();
   }
 
-  addProduct(){
-   DocumentReference dr=productCollection.doc();
-  FirebaseFirestore.instance.collection('users').add({'name':'Clark',
-  'brand':'Loofit',
-    'price':3400
+  void addProduct(){
+    _firestore.doc(id).set({
+      'name':tc.text,
+      'price':price.text,
+      'image':imageUrl.text,
+      'desc':desc.text
+    }
+    ).then((value) => {print('ok')});
 
-  });
-      update();
-      print("eroorr");
   }
 }
