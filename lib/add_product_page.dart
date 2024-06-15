@@ -1,15 +1,17 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:practice/widgets/dropdown_button.dart';
-
 import 'controler/product_page_controler.dart';
+import 'widgets/dropdown_button.dart';
 
 class AddProductPage extends StatelessWidget {
   const AddProductPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ProductPageControler>(builder: (ctrl){
+    return GetBuilder<ProductPageControler>(builder: (ctrl) {
+      List<String> items =[];
       return Scaffold(
         appBar: AppBar(
           title: const Text('Add Product'),
@@ -28,7 +30,7 @@ class AddProductPage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-               TextField(
+              TextField(
                 controller: ctrl.name,
                 decoration: const InputDecoration(
                     label: Text("product name"),
@@ -38,7 +40,7 @@ class AddProductPage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-               TextField(
+              TextField(
                 controller: ctrl.desc,
                 maxLines: 4,
                 decoration: const InputDecoration(
@@ -49,60 +51,57 @@ class AddProductPage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-               TextField(
+              TextField(
                 controller: ctrl.imageUrl,
                 decoration: const InputDecoration(
-                    label:  Text("product Image"),
+                    label: Text("product Image"),
                     border: OutlineInputBorder(),
                     hintText: "Image Url"),
               ),
               const SizedBox(
                 height: 10,
               ),
-               TextField(
+              TextField(
                 controller: ctrl.price,
                 decoration: const InputDecoration(
                     label: Text("product Price"),
                     border: OutlineInputBorder(),
                     hintText: "Price"),
               ),
-              // Row(
-              //   children: [
-              //     Flexible(
-              //         child: DropDown(
-              //             value: 'cat1',
-              //             text: "cat1",
-              //             list: const [
-              //               'cat1',
-              //               'cat2',
-              //               'cat3',
-              //             ],
-              //             onSelected: (selectedVal) {})),
-              //     Flexible(
-              //         child: DropDown(
-              //       text: 'brand',
-              //       list: const ['brand1', 'brand2', 'brand3'],
-              //       onSelected: (selectedVal) {},
-              //       value: 'brand1',
-              //     ))
-              //   ],
-              // ),
-              // const Text(
-              //   "Offer Product ?",
-              //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-              // ),
-              // DropDown(
-              //     value: 'No',
-              //     text: 'No',
-              //     list: const ['No', 'Yes'],
-              //     onSelected: (selectedVal) {print(selectedVal);}),
-              const SizedBox(height: 30,),
+              Row(
+                children: [
+                  Flexible(
+                      child: DropDown(
+                    // value: 'cat1',
+                    // text: "Brand",
+                    // list:  ['Service','Calza','Clara','Cheetah','J.'],
+                  )
+        ),
+                  Flexible(
+                      child: DropDown(
+                    //     list: ['Service','Calza','Clara','Cheetah','J.'],
+                    // value: 'brand1',
+                    // text: 'brand1',
+                    // list: const ['brand1', 'brand2', 'brand3'],
+                  )
+                     )],
+              ),
+              const Text(
+                "Offer Product ?",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+              ),
+
+              const SizedBox(
+                height: 30,
+              ),
               SizedBox(
-                    width: 200,
+                  width: 200,
                   height: 50,
                   child: ElevatedButton(
-                     
-                      onPressed: (){ctrl.addProduct();}, child: const Text('Submit')))
+                      onPressed: () {
+                        ctrl.addProduct();
+                      },
+                      child: const Text('Submit')))
             ],
           ),
         ),
