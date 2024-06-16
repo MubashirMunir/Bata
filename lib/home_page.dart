@@ -14,10 +14,8 @@ class HomePage extends StatelessWidget {
   };
   @override
   Widget build(BuildContext context) {
-    return
-      GetBuilder<HomeController>(builder: (ctrl) {
-        return
-          Scaffold(
+    return GetBuilder<HomeController>(builder: (ctrl) {
+      return Scaffold(
               body: Expanded(
                 child: ListView.builder(
                     itemCount: data.length,
@@ -33,7 +31,7 @@ class HomePage extends StatelessWidget {
               floatingActionButton: FloatingActionButton(
                 child: Icon(Icons.add),
                 onPressed: () {
-                  Get.to(const AddProductPage());
+                  Get.to( AddProductPage());
                 },
               ));
       });

@@ -2,36 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DropDown extends StatelessWidget {
+  DropDown({required this.list, required this.dropdowntext ,required this.OnSelect, required this.Hint});
 // List of items in our dropdown menu
   var items = 0;
-  String dropdownvalue = 'Bota';
-
+  final Hint;
+   final dropdowntext;
+  final Function(String) OnSelect;
+ final List<String> list;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Geeksforgeeks"),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            DropdownButton(
-
+    return DropdownButton(
+      elevation: 4,
+      alignment: Alignment.center,
+      borderRadius: BorderRadius.circular(10),
               // Initial Value
-              value: dropdownvalue,
-
+      hint: Text(Hint),
+              value: dropdowntext,
               // Down Arrow Icon
-              icon: const Icon(Icons.keyboard_arrow_down),
 
+              icon: const Icon(Icons.keyboard_arrow_down),
               // Array list of items
-              items: [
-                'Service',
-                'Bota',
-                'Clara',
-                'Cheeta',
-                'Bata',
-              ].map((String items) {
+              items: list.map((String items) {
                 return DropdownMenuItem(
                   value: items,
                   child: Text(items),
@@ -39,14 +30,11 @@ class DropDown extends StatelessWidget {
               }).toList(),
               // After selecting the desired option,it will
               // change button value to selected value
-              onChanged: (String? newValue) {
-                dropdownvalue = newValue!;
+              onChanged: (newValue) {
+               OnSelect(newValue.toString());
+
               },
-            ),
-          ],
-        ),
-      ),
-    );
+            );
   }
 
 }

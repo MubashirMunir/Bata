@@ -1,28 +1,37 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'controler/product_page_controler.dart';
 import 'widgets/dropdown_button.dart';
 
 class AddProductPage extends StatelessWidget {
-  const AddProductPage({super.key});
+   AddProductPage({super.key});
+
+  var List=['Service',
+  'Bota',
+  'Clara',
+  'Cheeta',
+  'Bata',];
+   var List2=['Shove',
+     'Boots',
+     'Pumpy',
+     'Loofer',
+     'Joger',];
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProductPageControler>(builder: (ctrl) {
-      List<String> items =[];
       return Scaffold(
         appBar: AppBar(
           title: const Text('Add Product'),
         ),
-        body: SingleChildScrollView(
+        body: SingleChildScrollView(padding: EdgeInsets.all(20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               const Text(
                 "Add New Product",
                 style: TextStyle(
+                  color: Colors.greenAccent,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -68,23 +77,36 @@ class AddProductPage extends StatelessWidget {
                     border: OutlineInputBorder(),
                     hintText: "Price"),
               ),
-              Row(
+              const SizedBox(height: 0,),
+              Row(mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Flexible(
-                      child: DropDown(
-                    // value: 'cat1',
-                    // text: "Brand",
-                    // list:  ['Service','Calza','Clara','Cheetah','J.'],
-                  )
-        ),
-                  Flexible(
-                      child: DropDown(
-                    //     list: ['Service','Calza','Clara','Cheetah','J.'],
-                    // value: 'brand1',
-                    // text: 'brand1',
-                    // list: const ['brand1', 'brand2', 'brand3'],
-                  )
-                     )],
+                  DropDown(
+                    Hint: 'Brand',
+                    OnSelect: (selectedItem){
+                      ctrl.category=selectedItem;
+                      ctrl.update();
+                    },
+                      // value: 'cat1',
+                      // text: "Brand",
+                       list: List,
+                     dropdowntext: ctrl.category,
+
+                      ),
+                  SizedBox(width: 20),
+                  DropDown(OnSelect: (selectedItem){
+                    ctrl.brand=selectedItem;
+                    ctrl.update();
+                    print(selectedItem);
+
+                  },
+
+                    Hint: 'Category',
+                    // dropdownvalue:'Bota',
+                      //list: ['Service','Calza','Clara','Cheetah','J.'],
+                      // text: 'brand1',
+                    list: List2, dropdowntext: ctrl.brand,
+                      )
+                ],
               ),
               const Text(
                 "Offer Product ?",
@@ -93,6 +115,19 @@ class AddProductPage extends StatelessWidget {
 
               const SizedBox(
                 height: 30,
+              ),
+              DropDown(OnSelect: (selectedItem){
+                ctrl.offer=selectedItem;
+                ctrl.update();
+                print(selectedItem);
+
+              },
+
+                Hint: 'Category',
+                // dropdownvalue:'Bota',
+                //list: ['Service','Calza','Clara','Cheetah','J.'],
+                // text: 'brand1',
+                list:['Yes','No'], dropdowntext: ctrl.offer,
               ),
               SizedBox(
                   width: 200,
