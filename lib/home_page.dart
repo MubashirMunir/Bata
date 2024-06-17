@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:practice/add_product_page.dart';
@@ -16,20 +17,39 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(builder: (ctrl) {
       return Scaffold(
-              body: Expanded(
-                child: ListView.builder(
-                    itemCount: data.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(data.keys.toString()),
-                        subtitle: Text(data.values.toString()),
-                        trailing:
-                        IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
-                      );
-                    }),
-              ),
+              body: Column(
+                children:[
+                  Expanded(
+                  child:StreamBuilder(stream: ctrl.firestore,
+                      builder: (BuildContext context,AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if(snapshot.connectionState == ConnectionState.waiting){
+                      const Center(child: CircularProgressIndicator());}
+                    else if (snapshot.hasError) {
+                      return Center(child: Text('Error: ${snapshot.error}'));
+                    } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                      return const Center(child: Text('No Data Available'));
+                    }
+                    var data=snapshot.data!.docs;
+
+                    return ListView.builder(
+                        itemCount: data.length,
+                        itemBuilder: (context, index) {
+                          var id =data[index].id;
+                          return ListTile(
+                            title: Text(data[index]['name'].toString()),
+                            trailing:  IconButton(
+                            onPressed: (){
+                              ctrl.deleteData(id);
+                           },
+                               icon: const Icon(Icons.delete),),
+                            subtitle:Text(data[index]['price'].toString()),
+                          );
+                        });
+                  }),
+                )
+                ]),
               floatingActionButton: FloatingActionButton(
-                child: Icon(Icons.add),
+                child: const Icon(Icons.add),
                 onPressed: () {
                   Get.to( AddProductPage());
                 },

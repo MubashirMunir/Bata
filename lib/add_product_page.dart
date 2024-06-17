@@ -24,7 +24,7 @@ class AddProductPage extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Add Product'),
         ),
-        body: SingleChildScrollView(padding: EdgeInsets.all(20),
+        body: SingleChildScrollView(padding: const EdgeInsets.all(20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -70,7 +70,7 @@ class AddProductPage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              TextField(
+              TextField(keyboardType: TextInputType.number,
                 controller: ctrl.price,
                 decoration: const InputDecoration(
                     label: Text("product Price"),
@@ -97,22 +97,18 @@ class AddProductPage extends StatelessWidget {
                     ctrl.brand=selectedItem;
                     ctrl.update();
                     print(selectedItem);
-
                   },
-
                     Hint: 'Category',
                     // dropdownvalue:'Bota',
                       //list: ['Service','Calza','Clara','Cheetah','J.'],
                       // text: 'brand1',
                     list: List2, dropdowntext: ctrl.brand,
-                      )
-                ],
+                      )],
               ),
               const Text(
                 "Offer Product ?",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
               ),
-
               const SizedBox(
                 height: 30,
               ),
@@ -120,7 +116,6 @@ class AddProductPage extends StatelessWidget {
                 ctrl.offer=selectedItem;
                 ctrl.update();
                 print(selectedItem);
-
               },
 
                 Hint: 'Category',
@@ -129,12 +124,14 @@ class AddProductPage extends StatelessWidget {
                 // text: 'brand1',
                 list:['Yes','No'], dropdowntext: ctrl.offer,
               ),
-              SizedBox(
+              Container(
                   width: 200,
                   height: 50,
                   child: ElevatedButton(
                       onPressed: () {
                         ctrl.addProduct();
+                        ctrl.clear();
+                        print('ok');
                       },
                       child: const Text('Submit')))
             ],
